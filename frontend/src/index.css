@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+ #you {
+     justify-content: flex-end;
+     padding: 0 10px;
+ }
+
+ #y {
+     background-color: white;
+     padding:0 10px;
+     border-radius: 5%;
+     color: black;
+ }
+
+ #other {
+     justify-content: flex-start;
+ }
+
+ #b {
+     background-color: rgb(147, 220, 182);
+     padding:0 10px;
+     border-radius: 5%;
+ }
