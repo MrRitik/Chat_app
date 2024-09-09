@@ -1,12 +1,18 @@
 import React, { useState, useEffect, useRef } from "react";
 
-// import music from "./iphone-sms-tone-original-mp4-5732.mp3";
+const now = new Date();
+let hours = now.getHours();
+const minutes = now.getMinutes();
+const ampm = hours >= 12 ? "PM" : "AM";
 
 export const Chat = ({ socket, username, room }) => {
   const [currentMessage, setcurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
-  //   const notification = new Audio(music);
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+
+  const timeString = `${hours}:${minutes < 10 ? "0" : ""}${minutes} ${ampm}`;
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -15,16 +21,12 @@ export const Chat = ({ socket, username, room }) => {
         room: room,
         author: username,
         message: currentMessage,
-        time:
-          (new Date(Date.now()).getHours() % 12) +
-          ":" +
-          new Date(Date.now()).getMinutes(),
+        time: timeString,
       };
 
       await socket.emit("send_message", messageData);
       setMessageList((list) => [...list, messageData]);
       setcurrentMessage("");
-      //   notification.play();
     }
   };
 
@@ -81,7 +83,7 @@ export const Chat = ({ socket, username, room }) => {
             <input
               value={currentMessage}
               type="text"
-              className="w-[45vw] border-4 py-2 px-2 "
+              className="w-[85%] border-4 py-2 px-2 "
               placeholder="Message...."
               onChange={(e) => setcurrentMessage(e.target.value)}
               onKeyPress={(e) => {

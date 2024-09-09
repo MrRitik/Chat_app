@@ -31,12 +31,12 @@ const App = () => {
             />
             <input
               type="text"
-              placeholder="Enter Chat Room"
+              placeholder="Enter Chat Room Code"
               className="w-[80%] mx-auto my-4 py-3 px-4 "
               onChange={(e) => setRoom(e.target.value)}
             />
             <button
-              className="w-[80%] mx-auto bg-violet-700 py-3 text-xl font-bold my-10"
+              className="w-[80%] mx-auto bg-violet-700 py-3 text-xl font-bold my-10 "
               onClick={joinChat}
             >
               Join
